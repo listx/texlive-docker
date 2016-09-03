@@ -1,6 +1,7 @@
 # TexLive Docker Images
 
 [![Build Status](https://travis-ci.org/listx/texlive-docker.svg?branch=master)](https://travis-ci.org/listx/texlive-docker)
+[![](https://images.microbadger.com/badges/image/listx/texlive.svg)](https://microbadger.com/images/listx/texlive "Get your own image badge on microbadger.com")
 
 This repository holds the Dockerfiles that are used to build Docker images of TexLive.
 
