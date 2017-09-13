@@ -1,83 +1,35 @@
-FROM listx/texlive:2016
+FROM listx/texlive:2017
 
 MAINTAINER Linus Arver <linus@ucla.edu>
 
 # Add all known font packages on official Arch Linux repos (not AUR). This is
-# more or less a hand-tuned list.
+# done with a regex for more automation.
 RUN \
-	pacman -S --noconfirm\
-		adobe-source-code-pro-fonts\
-		adobe-source-han-sans-cn-fonts\
-		adobe-source-han-sans-jp-fonts\
-		adobe-source-han-sans-kr-fonts\
-		adobe-source-han-sans-otc-fonts\
-		adobe-source-han-sans-tw-fonts\
-		adobe-source-sans-pro-fonts\
-		adobe-source-serif-pro-fonts\
-		artwiz-fonts\
-		bdf-unifont\
-		cantarell-fonts\
-		dina-font\
-		font-bh-ttf\
-		font-bitstream-speedo\
-		font-mathematica\
-		gnu-free-fonts\
-		gsfonts\
-		noto-fonts\
-		noto-fonts-cjk\
-		noto-fonts-emoji\
-		opendesktop-fonts\
-		otf-fira-mono\
-		otf-fira-sans\
-		otf-ipafont\
-		powerline-fonts\
-		profont\
-		tamsyn-font\
-		terminus-font\
-		tex-gyre-fonts\
-		ttf-anonymous-pro\
-		ttf-arphic-ukai\
-		ttf-arphic-uming\
-		ttf-baekmuk\
-		ttf-bitstream-vera\
-		ttf-cheapskate\
-		ttf-croscore\
-		ttf-dejavu\
-		ttf-droid\
-		ttf-fira-mono\
-		ttf-fira-sans\
-		ttf-freebanglafont\
-		ttf-freefont\
-		ttf-gentium\
-		ttf-hack\
-		ttf-hanazono\
-		ttf-hannom\
-		ttf-inconsolata\
-		ttf-indic-otf\
-		ttf-ionicons\
-		ttf-junicode\
-		ttf-khmer\
-		ttf-liberation\
-		ttf-linux-libertine\
-		ttf-linux-libertine-g\
-		ttf-mph-2b-damase\
-		ttf-overpass\
-		ttf-oxygen\
-		ttf-sazanami\
-		ttf-symbola\
-		ttf-tibetan-machine\
-		ttf-tlwg\
-		ttf-ubraille\
-		ttf-ubuntu-font-family\
-		wqy-bitmapfont\
-		wqy-microhei\
-		wqy-microhei-lite\
-		wqy-zenhei\
-		xorg-fonts-100dpi\
-		xorg-fonts-75dpi\
-		xorg-fonts-alias\
-		xorg-fonts-cyrillic\
-		xorg-fonts-encodings\
-		xorg-fonts-misc\
-		xorg-fonts-type1\
-	&& yes | pacman -Scc
+	`# Sync package databases.` \
+	&& pacman -Syw \
+	&& pacman -S --noconfirm \
+		$(pacman -Ssq "font|^otf|ttf" \
+			| grep -v fluidsynth \
+			| grep -v fontconfig \
+			| grep -v fonteditfs \
+			| grep -v fontforge \
+			| grep -v fontsproto \
+			| grep -v freetype2 \
+			| grep -v ftgl \
+			| grep -v gnome-font-viewer \
+			| grep -v gtk2_prefs \
+			| grep -v gtk2fontsel \
+			| grep -v gwaterfall \
+			| grep -v ^lib \
+			| grep -v mate-utils \
+			| grep -v mftrace \
+			| grep -v pangox-compat \
+			| grep -v ^perl \
+			| grep -v ^python \
+			| grep -v ^sdl \
+			| grep -v ^sound \
+			| grep -v ^t1 \
+			| grep -v ^texlive \
+			| grep -v texmacs \
+			| grep -v ^xorg) \
+	&& pacman -Scc --noconfirm
