@@ -29,6 +29,6 @@ if [[ ! -d $DOCKERFILE_DIR ]]; then
 	exit 1
 fi
 
-docker build --tag $DOCKERFILE_TAG --file ./$DOCKERFILE_DIR/Dockerfile ./$DOCKERFILE_DIR
+docker build --tag "$DOCKERFILE_TAG" --file "./${DOCKERFILE_DIR}/Dockerfile" "./${DOCKERFILE_DIR}"
 docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-docker push $DOCKERFILE_TAG
+docker push "$DOCKERFILE_TAG"
