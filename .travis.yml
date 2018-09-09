@@ -8,11 +8,11 @@ services:
 env:
   matrix:
     - DOCKERFILE_DIR=texlive
-      DOCKERFILE_TAG=listx/texlive:2017
+      DOCKERFILE_TAG=listx/texlive:2018
     - DOCKERFILE_DIR=texlive-with-fonts
-      DOCKERFILE_TAG=listx/texlive:2017-fonts
+      DOCKERFILE_TAG=listx/texlive:2018-fonts
     - DOCKERFILE_DIR=texlive-with-fonts-and-user
-      DOCKERFILE_TAG=listx/texlive:2017-fonts-and-user
+      DOCKERFILE_TAG=listx/texlive:2018-fonts-and-user
 
 before_script:
   - docker version

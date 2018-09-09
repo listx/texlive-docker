@@ -9,27 +9,8 @@ RUN \
 	&& pacman -S --noconfirm \
 		base-devel \
 		biber \
-		texlive-bibtexextra \
-		texlive-core \
-		texlive-fontsextra \
-		texlive-formatsextra \
-		texlive-games \
-		texlive-humanities \
-		texlive-langchinese \
-		texlive-langcyrillic \
-		texlive-langextra \
-		texlive-langgreek \
-		texlive-langjapanese \
-		texlive-langkorean \
-		texlive-latexextra \
-		texlive-music \
-		texlive-pictures \
-		texlive-pstricks \
-		texlive-publishers \
-		texlive-science \
-	`# Reinstall texlive-core to fix problem of eurm10 font not being found.` \
-	&& pacman -S --noconfirm \
-		texlive-core \
+		texlive-most \
+		texlive-lang \
 	`# Clear pacman cache` \
 	&& pacman -Scc --noconfirm
 

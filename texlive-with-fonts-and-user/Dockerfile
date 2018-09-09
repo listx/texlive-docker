@@ -1,4 +1,4 @@
-FROM listx/texlive:2017-fonts
+FROM listx/texlive:2018-fonts
 
 RUN \
 	`# Give 'foo' sudo access.` \
