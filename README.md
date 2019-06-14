@@ -9,22 +9,22 @@ This repository holds the Dockerfiles that are used to build Docker images of Te
 
 There are 2 images:
 
-- `listx/texlive:2018`
-- `listx/texlive:2018-fonts`
+- `listx/texlive:2019`
+- `listx/texlive:2019-fonts`
 
 .
 The first only has TexLive on it; the second one has everything in the first, plus all official Arch Linux font packages (have a look at the Dockerfile directly for the full list).
 Grab the first image, for example, like this:
 
 ```
-docker pull listx/texlive:2018
+docker pull listx/texlive:2019
 ```
 
 .
 The simplest way is to mount the folder holding your TeX files (e.g., your `$HOME` folder) into the container:
 
 ```
-docker run --detach --rm --volume /home:/home --name texlive2018 listx/texlive:2018
+docker run --detach --rm --volume /home:/home --name texlive2019 listx/texlive:2019
 ```
 
 .
@@ -32,21 +32,21 @@ Now you can either (1) start a shell session inside the container to run somethi
 For (1), you can do
 
 ```
-docker exec --interactive --tty texlive2018 bash'
+docker exec --interactive --tty texlive2019 bash'
 ```
 
 .
 For (2), you can do something like
 
 ```
-docker exec --interactive --tty texlive2018 sh -c 'cd /home/foo/my_tex_project && pdftex foo.tex'
+docker exec --interactive --tty texlive2019 sh -c 'cd /home/foo/my_tex_project && pdftex foo.tex'
 ```
 
 .
 If you don't like the fact that processes inside the container run as the `root` user, you can change this by creating your own custom image on top of these images, like this:
 
 ```
-FROM listx/texlive:2018-fonts
+FROM listx/texlive:2019-fonts
 
 # Give 'foo' sudo access.
 RUN echo '%foo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \

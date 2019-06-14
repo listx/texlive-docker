@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker run -d -v /home:/home --name texlive2018 listx/texlive:2018
+docker run -d -v /home:/home --name texlive2019 listx/texlive:2019

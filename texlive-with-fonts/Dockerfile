@@ -1,4 +1,4 @@
-FROM listx/texlive:2018
+FROM listx/texlive:2019
 
 MAINTAINER Linus Arver <linus@ucla.edu>
 
