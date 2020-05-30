@@ -11,6 +11,7 @@ RUN \
 		biber \
 		texlive-most \
 		texlive-lang \
+		pygmentize \
 	`# Clear pacman cache` \
 	&& pacman -Scc --noconfirm
 
