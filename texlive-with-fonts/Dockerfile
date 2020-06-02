@@ -31,5 +31,6 @@ RUN \
 			| grep -v ^t1 \
 			| grep -v ^texlive \
 			| grep -v texmacs \
+			| grep -v ttf-nerd-fonts-symbols-mono \
 			| grep -v ^xorg) \
 	&& pacman -Scc --noconfirm
