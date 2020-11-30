@@ -3,16 +3,16 @@ FROM archlinux/archlinux
 MAINTAINER Linus Arver <linus@ucla.edu>
 
 RUN \
-	`# Sync package databases.` \
-	&& pacman -Syw \
-	`# Install texlive packages.` \
+	# Sync package databases.
+	pacman -Syw \
+	# Install texlive packages.
 	&& pacman -S --noconfirm \
 		base-devel \
 		biber \
 		texlive-most \
 		texlive-lang \
 		pygmentize \
-	`# Clear pacman cache` \
+	# Clear pacman cache.
 	&& pacman -Scc --noconfirm
 
 # We have to manually edit PATH so that the "biber" binary is readily available

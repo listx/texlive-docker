@@ -7,61 +7,47 @@ This repository holds the Dockerfiles that are used to build Docker images of Te
 
 # Tutorial
 
-There are 2 images:
+There is 1 image, called
 
 - `listx/texlive:2020`
-- `listx/texlive:2020-fonts`
 
-.
-The first only has TexLive on it; the second one has everything in the first, plus all official Arch Linux font packages (have a look at the Dockerfile directly for the full list).
+which has TexLive on it.
+
 Grab the first image, for example, like this:
 
 ```
 docker pull listx/texlive:2020
 ```
 
-.
-The simplest way is to mount the folder holding your TeX files (e.g., your `$HOME` folder) into the container:
+The simplest way to use this image is to mount the folder holding your TeX files (e.g., your `$HOME` folder) into the container:
 
 ```
 docker run --detach --rm --volume /home:/home --name texlive2020 listx/texlive:2020
 ```
 
-.
+The image above excutes things as the root user.
+If you do not want this, go to the `texlive-user` subfolder and run `./build.sh` to generate an image that uses `listx/texlive:2020` as the base image but also injects a new user **inside** the container named `foo` that has the same user ID and group ID as your own.
+Running that script will result in a new image with the tag `2020-${USER}` (named after your own username), and to use it you can invoke it the same way as for the root user, but with a different tag.
+
+```
+docker run --detach --rm --volume /home:/home --name texlive2020 listx/texlive:2020-${USER}
+```
+
 Now you can either (1) start a shell session inside the container to run something like `xelatex`, or (2) just run your TeX project's build command (if you have, e.g., a `Makefile` set up for it).
 For (1), you can do
 
 ```
+# Enter a bash session to run your TeX engines and other commands.
 docker exec --interactive --tty texlive2020 bash'
 ```
 
-.
 For (2), you can do something like
 
 ```
 docker exec --interactive --tty texlive2020 sh -c 'cd /home/foo/my_tex_project && pdftex foo.tex'
 ```
 
-.
-If you don't like the fact that processes inside the container run as the `root` user, you can change this by creating your own custom image on top of these images, like this:
-
-```
-FROM listx/texlive:2020-fonts
-
-# Give 'foo' sudo access.
-RUN echo '%foo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-	&& groupadd -g 1000 foo \
-	&& useradd -m -N -u 1000 -g foo foo
-USER foo
-```
-
-.
-The above image creates a user named `foo`, and so all processes will run as `foo` inside this container.
-So, instead of files having user/group ownership as `root:root`, they will now be `foo:foo`.
-If the uid/gid of `1000` is also the same as your host system for your current user (let's say, `bar`), then your host will see new files created by the container as owned by `bar` (whereas they will be owned by `foo` /inside/ the container).
-You could, of course, decide to match up not just the user/group name but also the uid/gid as well to make it all the same.
-
-An example of this image type is in the texlive-with-fonts-and-user folder.
+The second method is recommended because it forces you to have a clean build system defined independent of this image.
 
 # License
 
