@@ -28,7 +28,7 @@ docker run --detach --rm --volume /home:/home --name texlive2020 listx/texlive:2
 ```
 
 .
-Now you can either (1) start a shell session inside the container to run something like `xelatex`, or (2) just run your TeX project's build comman (if you have, e.g., a `Makefile` set up for it).
+Now you can either (1) start a shell session inside the container to run something like `xelatex`, or (2) just run your TeX project's build command (if you have, e.g., a `Makefile` set up for it).
 For (1), you can do
 
 ```
