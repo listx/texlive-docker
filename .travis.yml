@@ -3,22 +3,22 @@ sudo: required
 # Make "docker" available to the build environment so that we can use it to
 # build docker images, etc.
 services:
-  - docker
+- docker
 
 env:
   matrix:
-    - DOCKERFILE_DIR=texlive
-      DOCKERFILE_TAG=listx/texlive:2020
-    - DOCKERFILE_DIR=texlive-with-fonts
-      DOCKERFILE_TAG=listx/texlive:2020-fonts
-    - DOCKERFILE_DIR=texlive-with-fonts-and-user
-      DOCKERFILE_TAG=listx/texlive:2020-fonts-and-user
+  - DOCKERFILE_DIR=texlive
+    DOCKERFILE_TAG=listx/texlive:2020
+  - DOCKERFILE_DIR=texlive-with-fonts
+    DOCKERFILE_TAG=listx/texlive:2020-fonts
+  - DOCKERFILE_DIR=texlive-with-fonts-and-user
+    DOCKERFILE_TAG=listx/texlive:2020-fonts-and-user
 
 before_script:
-  - docker version
+- docker version
 
 script:
-  - ./build.sh
+- ./build.sh
 
 after_success:
-  - docker images
+- docker images
