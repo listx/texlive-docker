@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux/archlinux
 
 MAINTAINER Linus Arver <linus@ucla.edu>
 
