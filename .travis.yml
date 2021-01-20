@@ -18,7 +18,8 @@ before_script:
 - docker version
 
 script:
-- ./build.sh
+# https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received
+- travis_wait 30 ./build.sh
 
 after_success:
 - docker images
