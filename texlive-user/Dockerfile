@@ -1,13 +1,15 @@
 FROM listx/texlive:2020
 
+ARG user
+ARG group
 ARG uid
 ARG gid
 
 RUN \
-	# Give 'foo' sudo access.
-	echo '%foo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-	&& groupadd -g ${gid} foo \
-	&& useradd -m -N -u ${uid} -g foo foo \
+	# Give '${user}' sudo access.
+	echo '%${user} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+	&& groupadd -g ${gid} ${group} \
+	&& useradd -m -N -u ${uid} -g ${gid} ${user} \
 	# Add some other useful packages.
 	&& pacman -Syw \
 	&& pacman -Sy --noconfirm \
@@ -15,5 +17,5 @@ RUN \
     # Cleanup.
 	&& pacman -Scc --noconfirm
 
-# Use "foo" user.
-USER foo
+# Use "${user}" user.
+USER ${user}
