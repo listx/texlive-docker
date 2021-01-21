@@ -11,6 +11,8 @@ env:
   matrix:
   - DOCKERFILE_DIR=texlive
     DOCKERFILE_TAG=listx/texlive:2020
+  - DOCKERFILE_DIR=texlive-user
+    DOCKERFILE_TAG=
 
 before_script:
 - docker version

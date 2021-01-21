@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 # From https://stackoverflow.com/a/8574392/437583.
 includes()
 {
@@ -19,7 +23,6 @@ required_vars=(
 	DOCKER_USER
 	DOCKER_PASSWORD
 	DOCKERFILE_DIR
-	DOCKERFILE_TAG
 )
 missing_vars=()
 # According to "Shell Parameter Expansion", the "!" in ${!...} introduces a
@@ -48,9 +51,16 @@ to_push=(
 )
 
 pushd "${DOCKERFILE_DIR}"
-    ./build_container.sh "${DOCKERFILE_TAG}"
+    ./build_container.sh
+    ./test.sh
 
     if includes "${DOCKERFILE_DIR}" "${to_push[@]}"; then
+        # For those images we want to push, we must be provided an explicit tag
+        # to use for pushing.
+        if [[ -z "${DOCKERFILE_TAG:-}" ]]; then
+            echo "image push: missing \$DOCKERFILE_TAG" >&2
+            exit 1
+        fi
         docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
         docker push "$DOCKERFILE_TAG"
     fi
