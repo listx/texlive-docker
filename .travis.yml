@@ -16,6 +16,7 @@ env:
 
 before_script:
 - docker version
+- docker images
 
 script:
 # https://docs.travis-ci.com/user/common-build-problems/#Build-times-out-because-no-output-was-received
