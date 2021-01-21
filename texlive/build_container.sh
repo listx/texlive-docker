@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --tag "listx/texlive:2020" .
+docker build --tag "${1:-listx/texlive:2020}" .

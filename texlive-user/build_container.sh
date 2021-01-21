@@ -10,4 +10,4 @@ docker build \
     --build-arg group=${__group} \
     --build-arg uid=${__uid} \
     --build-arg gid=${__gid} \
-    --tag "listx/texlive:2020-${__user}" .
+    --tag "${1:-listx/texlive:2020-${__user}}" .
