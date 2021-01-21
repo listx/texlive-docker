@@ -1,5 +1,6 @@
 os: linux
 dist: xenial
+language: minimal
 
 # Make "docker" available to the build environment so that we can use it to
 # build docker images, etc.
