@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/listx/texlive-docker.svg?branch=master)](https://travis-ci.org/listx/texlive-docker)
 [![](https://images.microbadger.com/badges/image/listx/texlive.svg)](https://microbadger.com/images/listx/texlive "Get your own image badge on microbadger.com")
+[![Docker hub](https://img.shields.io/docker/pulls/listx/texlive.svg)](https://hub.docker.com/r/listx/texlive/)
 
 This repository holds the Dockerfiles that are used to build Docker images of TexLive.
 
@@ -26,7 +27,7 @@ docker run --detach --rm --volume /home:/home --name texlive2020 listx/texlive:2
 ```
 
 The image above excutes things as the root user.
-If you do not want this, go to the `texlive-user` subfolder and run `./build.sh` to generate an image that uses `listx/texlive:2020` as the base image but also injects a new user **inside** the container named `foo` that has the same user ID and group ID as your own.
+If you do not want this, go to the `texlive-user` subfolder and run [`./build.sh`](texlive-user/build.sh) to generate an image that uses `listx/texlive:2020` as the base image but also injects a new user **inside** the container named `foo` that has the same user ID and group ID as your own.
 Running that script will result in a new image with the tag `2020-${USER}` (named after your own username), and to use it you can invoke it the same way as for the root user, but with a different tag.
 
 ```
@@ -51,4 +52,4 @@ The second method is recommended because it forces you to have a clean build sys
 
 # License
 
-See LICENSE file.
+See [LICENSE file](LICENSE).
