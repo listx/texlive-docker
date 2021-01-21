@@ -9,6 +9,7 @@ RUN \
 	&& pacman -S --noconfirm \
 		base-devel \
 		biber \
+		git \
 		texlive-most \
 		texlive-lang \
 		pygmentize \
