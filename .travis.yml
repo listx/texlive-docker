@@ -16,6 +16,7 @@ env:
 
 before_script:
 - docker version
+- docker info
 - docker images
 
 script:
