@@ -1,4 +1,6 @@
 language: minimal
+os: linux
+dist: focal
 
 # Make "docker" available to the build environment so that we can use it to
 # build docker images, etc.
