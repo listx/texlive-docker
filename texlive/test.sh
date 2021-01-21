@@ -13,3 +13,6 @@ if [[ ! -f ${PROJECT_ROOT}/test/minimal.pdf ]]; then
     echo >&2 "could not compile ${PROJECT_ROOT}/test/minimal.pdf"
     exit 1
 fi
+
+# Cleanup.
+"${PROJECT_ROOT}"/texlive/with_container.sh "cd ${PROJECT_ROOT} && ./test/clean.sh"

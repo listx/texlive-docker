@@ -25,3 +25,6 @@ if [[ "${owner_group}" != $(id -g -n) ]]; then
     echo >&2 "${PROJECT_ROOT}/test/minimal.pdf is owned by GID ${owner_group}; expected $(id -g -n)"
     exit 1
 fi
+
+# Cleanup.
+"${PROJECT_ROOT}"/texlive-user/with_container.sh "cd ${PROJECT_ROOT} && ./test/clean.sh"
