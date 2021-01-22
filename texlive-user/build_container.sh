@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 __user=$(id -u -n)
 __group=$(id -g -n)
 __uid=$(id -u)
