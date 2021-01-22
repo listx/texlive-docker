@@ -51,7 +51,11 @@ to_push=(
 )
 
 pushd "${DOCKERFILE_DIR}"
+
+    echo "### Building container"
     ./build_container.sh
+
+    echo "### Testing"
     ./test.sh
 
     if includes "${DOCKERFILE_DIR}" "${to_push[@]}"; then
