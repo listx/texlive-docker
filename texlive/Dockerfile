@@ -21,13 +21,6 @@ RUN \
 # other Perl-based paths for the sake of completeness. [1]
 ENV PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:${PATH}"
 
-# Install dependencies for latexindent.
-RUN  (echo y;echo o conf prerequisites_policy follow;echo o conf commit)|cpan \
-	 && cpan install Log::Dispatch::File \
-	 && cpan install YAML::Tiny \
-	 && cpan install File::HomeDir \
-	 && rm -Rf $HOME/.cpan
-
 CMD ["tail", "-f", "/dev/null"]
 
 # REFERENCES
