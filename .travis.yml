@@ -1,4 +1,4 @@
-language: minimal
+language: shell
 os: linux
 dist: focal
 
@@ -8,7 +8,7 @@ services:
 - docker
 
 env:
-  matrix:
+  jobs:
   - DOCKERFILE_DIR=texlive
     DOCKERFILE_TAG=listx/texlive:2020
   - DOCKERFILE_DIR=texlive-user
