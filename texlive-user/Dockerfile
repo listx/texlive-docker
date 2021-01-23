@@ -6,10 +6,8 @@ ARG uid
 ARG gid
 
 RUN \
-	# Give '${user}' sudo access.
-	echo '%${user} ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-	&& groupadd -g ${gid} ${group} \
-	&& useradd -m -N -u ${uid} -g ${gid} ${user}
+	addgroup -g ${gid} ${group} \
+	&& echo -e "${user}\n${user}" | adduser -G ${group} -u ${uid} ${user}
 
 # Use "${user}" user.
 USER ${user}
