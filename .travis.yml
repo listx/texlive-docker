@@ -15,6 +15,7 @@ env:
     DOCKERFILE_TAG=
 
 before_script:
+- git branch
 - docker version
 - docker info
 - docker images
