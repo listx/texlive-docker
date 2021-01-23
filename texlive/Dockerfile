@@ -10,7 +10,9 @@ RUN \
 		bashInteractive \
 		git \
 		python39Packages.pygments \
-		texlive.combined.scheme-full
+		texlive.combined.scheme-full \
+	# Clean up unusued paths.
+	&& nix-collect-garbage -d
 
 CMD ["tail", "-f", "/dev/null"]
 
