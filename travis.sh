@@ -16,7 +16,6 @@ includes()
     return 1
 }
 
-
 # Logic for checking required variables inspired by
 # http://unix.stackexchange.com/a/278974/72230.
 required_vars=(
@@ -65,8 +64,13 @@ pushd "${DOCKERFILE_DIR}"
             echo "image push: missing \$DOCKERFILE_TAG" >&2
             exit 1
         fi
-        docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
-        docker push "$DOCKERFILE_TAG"
+
+        # Only push images for master branch. This way "next" branch can be
+        # used purely for testing only.
+        if [[ $(git rev-parse --abbrev-ref HEAD) == "master" ]]; then
+            docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
+            docker push "$DOCKERFILE_TAG"
+        fi
     fi
 
 popd
