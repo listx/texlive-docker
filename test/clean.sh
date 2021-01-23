@@ -11,3 +11,6 @@ shopt -s extglob
 
 # Remove all auxiliary TeX files.
 rm -fv ${PROJECT_ROOT}/test/minimal.!(tex)
+
+# Remove auxiliary latexindent files.
+rm -f indent.log
