@@ -36,7 +36,7 @@ cd texlive
 ```
 
 The above commands run everything as `root` inside the container. If you do not
-want this, go to the `texlive-user` subfolder and run
+want this, go to the [`texlive-user`](./texlive-user) subfolder and run
 [`./build_container.sh`](texlive-user/build_container.sh) to generate an image
 that uses `listx/texlive:2020` as the base image but also injects a new user
 **inside** the container named after your current non-root user that has the
