@@ -5,7 +5,7 @@
 [![Docker hub](https://img.shields.io/docker/pulls/listx/texlive.svg)](https://hub.docker.com/r/listx/texlive/)
 
 This repository holds the Dockerfiles that are used to build Docker images of
-TexLive.
+TexLive, which are hosted on [Docker Hub][docker-hub].
 
 # Tutorial
 
@@ -50,3 +50,5 @@ as well.
 # License
 
 See [LICENSE file](LICENSE).
+
+[docker-hub]: https://hub.docker.com/r/listx/texlive
